@@ -1,26 +1,21 @@
 package pl.lodz.uni.math.daofactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DaoFactory {
 
 	private Source sourceOfData;
+	Map<EnumSourceDaoFactory, Source> sources = new HashMap<EnumSourceDaoFactory, Source>();
 
 	public DaoFactory() {
+		sources.put(EnumSourceDaoFactory.DB,DbSource.getInstance());
+		sources.put(EnumSourceDaoFactory.WS,WsSource.getInstance());
+		sources.put(EnumSourceDaoFactory.XML,XmlSource.getInstance());
 	}
 
 	public void setSourceOfData(EnumSourceDaoFactory source) {
-		switch (source) {
-		case DB:
-			sourceOfData = DbSource.getInstance();
-			break;
-		case XML:
-			sourceOfData = XmlSource.getInstance();
-			break;
-		case WS:
-			sourceOfData = WsSource.getInstance();
-			break;
-		default:
-			break;
-		}
+		sourceOfData = sources.get(source);
 	}
 
 	public Source getSourceOfData() {

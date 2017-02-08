@@ -21,6 +21,8 @@ public class Main
     	daoFactory.getSourceOfData().selectAllUsers();
     	DaoFactory daoFactory2 = new DaoFactory();
     	daoFactory2.setSourceOfData(EnumSourceDaoFactory.DB);
+    	daoFactory2.getSourceOfData().selectUserById(1);
+    	daoFactory2.getSourceOfData().selectAllUsers();
     	if(daoFactory.getSourceOfData().getClass().equals(daoFactory2.getSourceOfData().getClass())){
     		logger.info("Good");
     	}

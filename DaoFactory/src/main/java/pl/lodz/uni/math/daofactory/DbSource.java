@@ -8,7 +8,7 @@ import pl.lodz.uni.math.user.User;
 
 public class DbSource implements Source {
 	
-	private User userMock = EasyMock.createMock(User.class);
+	private User userMock;
 	
 	private static DbSource databaseInstance = new DbSource();
 	
@@ -26,6 +26,7 @@ public class DbSource implements Source {
 	}
 
 	public User selectUserById(int id) {
+		userMock = EasyMock.createMock(User.class);
 		EasyMock.expect(userMock.getId()).andReturn(id).anyTimes();
 		EasyMock.expect(userMock.getName()).andReturn("DB").anyTimes();
 		EasyMock.replay(userMock);
